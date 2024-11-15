@@ -1,36 +1,36 @@
 # Introduction
 
-*Depends* is a source code dependency extraction tool, designed to infer syntactical relations among source code entities, such as files and methods, from various programming languages. Our objective is to provide a framework that is easily extensible to support dependency extraction from different programming languages and configuration files, so that other high-level analysis tools can be built upon it, in a language-independent fashion. Sample applications include code visualization, program comprehension, code smell detection, architecture analysis, design refactoring, etc.  
+*learngit* is a source code dependency extraction tool, designed to infer syntactical relations among source code entities, such as files and methods, from various programming languages. Our objective is to provide a framework that is easily extensible to support dependency extraction from different programming languages and configuration files, so that other high-level analysis tools can be built upon it, in a language-independent fashion. Sample applications include code visualization, program comprehension, code smell detection, architecture analysis, design refactoring, etc.  
 
-Our creation of *Depends* is motivated by the observations that different vendors, such as Understand&trade;, Structure 101 &trade;, and Lattix&trade;, created their own dependency extraction tools that are packaged with their other analysis functions. To conduct new analysis, vendors and researchers must each create their own dependency extraction tools, or use the output of other tools, which are usually not designed to be reusable. 
+Our creation of *learngit* is motivated by the observations that different vendors, such as Understand&trade;, Structure 101 &trade;, and Lattix&trade;, created their own dependency extraction tools that are packaged with their other analysis functions. To conduct new analysis, vendors and researchers must each create their own dependency extraction tools, or use the output of other tools, which are usually not designed to be reusable. 
 
 We believe that dependency analysis of software source code is one of the most important foundations of software engineering. Given the growing number of systems built on new languages and multi-languages, the need of a flexible, extensible multi-language dependency extraction framework, with simple and unified interfaces is widely recognized. 
 
-*Depends* is open source and free, to promote community collaboration, to avoid repetitive work, and to improve the quality of analytical tools.
+*learngit* is open source and free, to promote community collaboration, to avoid repetitive work, and to improve the quality of analytical tools.
 
-# How to use *Depends*
+# How to use *learngit*
 
 ## Download and installation
 
-You could download the latest version of *Depends* from https://github.com/multilang-depends/depends/releases/,  
-and then unzip the ```depends-*version*.tgz``` file in any directory of your computer.
+You could download the latest version of *learngit* from https://github.com/multilang-learngit/learngit/releases/,  
+and then unzip the ```learngit-*version*.tgz``` file in any directory of your computer.
 
-*Depends* is written in java, so it could be run on any OS with a JRE or JDK environment (like Windows, Linux or Mac OS). 
+*learngit* is written in java, so it could be run on any OS with a JRE or JDK environment (like Windows, Linux or Mac OS). 
 
 ## Run it from command line
 
-Following the single responsibility principle, *Depends* is designed for the purpose of extracting dependencies only. It only provides CLI interface, without GUI. But you can convert the output of *Depends* into the GUI of other tools, such as GraphViz(http://graphviz.org/), PlantUML(http://plantuml.com/), and DV8 (https://www.archdia.com). 
+Following the single responsibility principle, *learngit* is designed for the purpose of extracting dependencies only. It only provides CLI interface, without GUI. But you can convert the output of *learngit* into the GUI of other tools, such as GraphViz(http://graphviz.org/), PlantUML(http://plantuml.com/), and DV8 (https://www.archdia.com). 
 
-You could run *Depends* in the following ways: ```depends.sh``` on Linux/Mac, ```depends.bat``` on Microsoft Windows, or  ```java -jar depends.jar```.
+You could run *learngit* in the following ways: ```learngit.sh``` on Linux/Mac, ```learngit.bat``` on Microsoft Windows, or  ```java -jar learngit.jar```.
 
 Note: If you encountered Out of Memory error like ```GC overhead limt exceed```, please expand
-the JVM memory like following ```java -Xmx4g -jar depends.jar <args>```.
+the JVM memory like following ```java -Xmx4g -jar learngit.jar <args>```.
 
 ## Parameters
 
-The CLI tool usage could be listed by ```depends --help```, like following:
+The CLI tool usage could be listed by ```learngit --help```, like following:
 
-    Usage: depends [-hms] [--auto-include] [-d=<dir>] [-g=<granularity>]
+    Usage: learngit [-hms] [--auto-include] [-d=<dir>] [-g=<granularity>]
                    [-p=<namePathPattern>] [-f=<format>[,<format>...]]...
                    [-i=<includes>[,<includes>...]]... <lang> <src> <output>
           <lang>                 The language of project files: [cpp, java, ruby, python,
@@ -55,21 +55,21 @@ The CLI tool usage could be listed by ```depends --help```, like following:
                                  The name path separators.[default(/),dot(.)
 
 
-To run *Depends*, you need to specify 3 most important parameters: ```lang```, ```src```,```output```, as explained above. 
+To run *learngit*, you need to specify 3 most important parameters: ```lang```, ```src```,```output```, as explained above. 
 
 ## Remember to specify include paths
 
-Please note that for most programming languages, such as ```C/C++, Ruby, Maven/Gradle```, the ```--includes``` path is important for *Depends* to find the right files when conducting code dependency analysis, similar to Makefile/IDE.  Otherwise, the extracted dependencies may not be accurate. 
+Please note that for most programming languages, such as ```C/C++, Ruby, Maven/Gradle```, the ```--includes``` path is important for *learngit* to find the right files when conducting code dependency analysis, similar to Makefile/IDE.  Otherwise, the extracted dependencies may not be accurate. 
 
-Do not specify include paths outside of src directory (e.g. system level include paths, or external dependencies) because *Depends* will not process them.
+Do not specify include paths outside of src directory (e.g. system level include paths, or external dependencies) because *learngit* will not process them.
 
-```--auto-include``` is a useful parameter to simplify the input of include dirs: with this parameter, *Depends* will include all sub-directories of ```src```.
+```--auto-include``` is a useful parameter to simplify the input of include dirs: with this parameter, *learngit* will include all sub-directories of ```src```.
 
 For ```Java``` programs, you are not required to specify include paths, because the mapping between java file paths are explicitly stated in the import statements.
 
 ### Output
 
-The output of *Depends* can be exported into 5 formats: json, xml, excel, dot, and plantuml. Due to the limitation of MS excel,  you can only export into an excel file if the number of elements is less than 256.)
+The output of *learngit* can be exported into 5 formats: json, xml, excel, dot, and plantuml. Due to the limitation of MS excel,  you can only export into an excel file if the number of elements is less than 256.)
 
 Dot files could be used to generate graphs using GraphViz (http://graphviz.org/).
 
@@ -79,9 +79,9 @@ Json and XML files could be used to generate Design Structure Matrices (DSMs) us
 
 The detail of json/xml format could be found [here](./doc/output_format.md).
 
-### How many dependency types does *Depends* support?
+### How many dependency types does *learngit* support?
 
-*Depends* supports major dependency types, including:
+*learngit* supports major dependency types, including:
 * Call: function/method invoke
 * Cast: type cast
 * Contain: variable/field definition
@@ -100,35 +100,35 @@ For detail of supported types, please refer to [here](./doc/dependency_types.md)
 
 # How to contribute
 
-There are many ways to contribute to *Depends*. For example:
+There are many ways to contribute to *learngit*. For example:
 
 ## Support new languages
 
-*Depends* implemented a graceful kernel for dependency analysis, which can be extended to accommodate various programming languages. So far, it only supports Java, C/C++, Ruby, and Maven. Please feel free to leverage this framework to add your own dependency extractor. 
+*learngit* implemented a graceful kernel for dependency analysis, which can be extended to accommodate various programming languages. So far, it only supports Java, C/C++, Ruby, and Maven. Please feel free to leverage this framework to add your own dependency extractor. 
 
 The effort needed for each language varies a lot. We spent 24 hours to support Maven, but spent weeks to extract dependencies from Ruby
 
 ## Enhance language features and fix issues
 
-Parsing source files is not trivial. There are many language-specific features that need to be taken into consideration. Reporting unsupported language features or fixing existing issues will make *Depends* better. 
+Parsing source files is not trivial. There are many language-specific features that need to be taken into consideration. Reporting unsupported language features or fixing existing issues will make *learngit* better. 
 
 ## Create useful tools
 
-You could use *Depends* as building blocks to create various tools, either open source or commercial, for productions or research, such as GUI tools, code visualization tools, etc.
+You could use *learngit* as building blocks to create various tools, either open source or commercial, for productions or research, such as GUI tools, code visualization tools, etc.
 
 ## Become a sponsor
 
-It will help us a great deal if your company or institute becomes a sponsor of our project. Your donation could help *Depends* to be independent, sustainable, and support more contributors.
+It will help us a great deal if your company or institute becomes a sponsor of our project. Your donation could help *learngit* to be independent, sustainable, and support more contributors.
 
 # Tell us your thoughts
 
-You are welcome to use "Depends" in your projects, either open source or commercial ones, as well as software engineering research. Your feedback is highly appreciated.  We will also be thankful if you could help us spread the words and encourage more people to use it.
+You are welcome to use "learngit" in your projects, either open source or commercial ones, as well as software engineering research. Your feedback is highly appreciated.  We will also be thankful if you could help us spread the words and encourage more people to use it.
 
 # Acknowledgement
 
 This project is built upon the excellent work of other researchers, including the ENRE framework (https://github.com/jinwuxia/ENRE) proposed by Jin Wuxia et al., and the architecture research from Prof. Yuanfang Cai 's team (https://www.cs.drexel.edu/~yfcai/) on dependency analysis.
 
-The language specific front-end of *Depends* is built upon several excellent open source projects, including Antlr/Antlr Grammar V4 (https://github.com/antlr), Eclipse CDT (www.eclipse.org/cdt), and JRuby(https://github.com/jruby/jruby).
+The language specific front-end of *learngit* is built upon several excellent open source projects, including Antlr/Antlr Grammar V4 (https://github.com/antlr), Eclipse CDT (www.eclipse.org/cdt), and JRuby(https://github.com/jruby/jruby).
 
 # Authors
  - Gang ZHANG (https://github.com/gangz)
